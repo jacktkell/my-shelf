@@ -10,21 +10,21 @@ import BookCollection from "./components/BookCollection";
 import LoginSignupPage from "./components/LoginSignupPage";
 import BookDetails from "./components/BookDetails";
 import MyShelf from "./components/MyShelf";
+import MyProfile from "./components/MyProfile";
 
 function App() {
-
-  //state so each book can be mapped over and contain its own info
   const [books, setBooks] = useState([]);
   const [search, setSearch] = useState("");
-
-  // set state for logged in user
+  const [filter, setFilter] = useState("");
   const [currentUser, setCurrentUser] = useState({});
 
+  //sets key/value pair in local storage to make authentication work
   function storeUser(user) {
     localStorage.setItem("user", user.id);
     setCurrentUser(user);
   }
 
+  //logs user out, deletes local storage id
   function handleLogout() {
     async function logout() {
       const res = await fetch("/logout", { method: "DELETE" });
@@ -48,9 +48,14 @@ function App() {
     fetchBooks();
   }, []);
 
+  //search for a book
   const displayedBooks = books.filter((book) =>
     book.title.toLowerCase().includes(search.toLowerCase())
   );
+
+  // filter books by genre
+  const filteredBooks = books.filter((book) => 
+    book.genre.toLowerCase().includes(filter.toLowerCase()))
 
   return (
     <Router>
@@ -65,6 +70,9 @@ function App() {
                 <Link to="/myshelf">My Shelf</Link>
               </li>
               <li>
+                <Link to="/myprofile">My Profile</Link>
+              </li>
+              <li>
                 <button onClick={handleLogout}>Log out</button>
               </li>
             </ul>
@@ -77,10 +85,13 @@ function App() {
                 <BookDetails currentUser={currentUser} />
               </Route>
               <Route path="/" exact>
-                <BookCollection currentUser={currentUser} books={displayedBooks} onSearch = {setSearch}/>
+                <BookCollection currentUser={currentUser} books={displayedBooks} books= {filteredBooks} onSearch = {setSearch} onFilter = {setFilter} />
               </Route>
               <Route path="/myshelf">
                 <MyShelf currentUser={currentUser} />
+              </Route>
+              <Route path="/myprofile">
+                <MyProfile currentUser={currentUser} />
               </Route>
             </>
           ) : (

@@ -3,7 +3,7 @@ class BooksController < ApplicationController
     skip_before_action :authorize, only: :show
 
     def index
-        render json: Book.limit(5).order("RANDOM()")
+        render json: Book.order("RANDOM()")
     end
 
     def show 
