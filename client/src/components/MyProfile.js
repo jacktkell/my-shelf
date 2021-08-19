@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import UpdateForm from './UpdateForm'
 
 function MyProfile({currentUser}) {
     const [profile, setProfile] = useState([])
@@ -16,9 +17,7 @@ function MyProfile({currentUser}) {
         getProfile()
     }, [])
 
-    const {name, fav_genre, bio, book_titles} = profile
-    
-
+    const {name, fav_genre, bio} = profile
 
     return (
         <div>
@@ -28,6 +27,10 @@ function MyProfile({currentUser}) {
             <h2>Books on your shelf: {bookCount}</h2>
             <h2>About {name}: </h2>
             <p>{bio}</p>
+
+            <div>
+                <h4>Something change? <a href = "/update">Update your profile here</a></h4>
+            </div>
         </div>
     )
 }

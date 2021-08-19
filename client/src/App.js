@@ -11,6 +11,7 @@ import LoginSignupPage from "./components/LoginSignupPage";
 import BookDetails from "./components/BookDetails";
 import MyShelf from "./components/MyShelf";
 import MyProfile from "./components/MyProfile";
+import UpdateForm from "./components/UpdateForm";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -92,6 +93,9 @@ function App() {
               </Route>
               <Route path="/myprofile">
                 <MyProfile currentUser={currentUser} />
+              </Route>
+              <Route path = "/update">
+                <UpdateForm currentUser={currentUser}/>
               </Route>
             </>
           ) : (

@@ -14,6 +14,12 @@ class UsersController < ApplicationController
         render json: user, status: :created
     end
 
+    #update a user's profile
+    def update 
+        @current_user.update(update_params)
+        render json: user
+    end
+
     #return signed in user
     def show 
         render json: @current_user
@@ -24,5 +30,9 @@ class UsersController < ApplicationController
     #parameters a user will need to sign up
     def user_params
         params.require(:user).permit(:name, :password, :fav_genre, :bio)
+    end
+
+    def update_params
+        params.require(:user).permit(:name, :fav_genre, :bio)
     end
 end
