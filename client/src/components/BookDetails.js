@@ -1,0 +1,171 @@
+import React, { useEffect, useState } from "react";
+import { useParams, useHistory } from "react-router-dom";
+import "./styles.css";
+
+function BookDetails({ currentUser }) {
+  const [book, setBook] = useState([]);
+  const [errors, setErrors] = useState(null);
+  const [review, setReview] = useState([]);
+  const [newReview, setNewReview] = useState([]);
+  const [rating, setRating] = useState([]);
+  const [newRating, setNewRating] = useState([]);
+  const id = useParams().id;
+  let history = useHistory();
+
+  //FETCH A SINGLE BOOK FROM BACKEND
+  useEffect(() => {
+    fetch(`http://localhost:3000/books/${id}`)
+      .then((r) => r.json())
+      .then((book) => {
+        setBook(book);
+        setReview(book.book_reviews);
+        setRating(book.book_ratings);
+      });
+  }, [id]);
+
+  //ADDS A BOOK TO A USER'S SHELF
+  async function addBook() {
+    const bookData = {
+      book_id: book.id,
+    };
+    const res = await fetch("/shelves", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(bookData),
+    });
+    if (res.ok) {
+      const shelf = await res.json();
+      alert(`${title} has been added to your shelf`);
+      history.push("/myshelf");
+    } else {
+      const error = await res.json();
+      setErrors(error.message);
+    }
+  }
+
+  // REMOVE BOOK FROM MYSHELF
+  async function removeBook() {
+    const res = await fetch(`/shelves/${shelf}`, {
+      method: "DELETE",
+    });
+    if (res.ok) {
+      alert(`${title} has been removed from your shelf`);
+      history.push("/myshelf");
+    }
+  }
+
+  //POST REQUEST TO ADD A REVIEW
+  async function addReview(e) {
+    // e.preventDefault();
+    const reviewData = { book_id: book.id, content: newReview };
+    const res = await fetch(`/reviews`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(reviewData),
+    });
+    const rev = await res.json();
+    setReview([...review, rev]);
+  }
+
+  // POST RATING
+  async function addRating(e) {
+    // e.preventDefault();
+    const ratingData = {book_id: book.id, rating: newRating };
+    const res = await fetch(`/ratings`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(ratingData),
+    });
+    const rate = await res.json();
+    setRating(rate);
+  }
+
+  //DECONSTRUCT BOOK INFO FOR EASE OF USE
+  const { title, author, genre, length, pub_date, image, book_ratings, shelf, shelves } = book;
+
+  // GET TOTAL FOR THE AVERAGE RATING OF A BOOK
+  const total = (accumulator, currentValue) => accumulator + currentValue;
+
+  // DISPLAY BOOK INFORMATION
+  return (
+    <div>
+      <ul>
+        <h3>
+          {title} by {author}
+        </h3>
+        <img src={image} alt={title} className="photo" />
+        <li>
+          <b>Genre: </b>
+          {genre}
+        </li>
+        <li>
+          <b>Page count: </b> {length}
+        </li>
+        <li>
+          <b>Published: </b>
+          {pub_date}
+        </li>
+        {rating.length > 0 ? (
+          <li>
+            <b>Average rating: </b>
+            {(rating.reduce(total) / rating.length).toFixed(2)}
+          </li>
+        ) : null}
+      </ul>
+      <div>
+        <b>Reviews about {title}: </b>
+        <ul>
+          {review ? review.map((r) => <li key ={r.id}><i>{r}</i></li>): null}
+        </ul>
+      </div>
+      <button onClick={addBook}>Add to my shelf</button>
+      <button onClick={removeBook}>Remove from my shelf</button>
+
+      {/* FORM TO ADD A NEW REVIEW */}
+      <div>
+        <form onSubmit={addReview}>
+          <textarea
+            type="text"
+            placeholder="Leave a review..."
+            name="newReveiw"
+            value={newReview}
+            onChange={(e) => setNewReview(e.target.value)}>
+          </textarea>
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+
+      {/* FORM TO ADD A RATING */}
+      <div>
+        <form onSubmit={addRating}>
+          <label htmlFor="newRating"> Leave a rating: </label>
+          <select
+            name="newRating"
+            id="newRating"
+            onChange={(e) => setNewRating(e.target.value)}
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+          <input type="submit" value="submit" />
+        </form>
+      </div>
+    </div>
+  );
+}
+
+export default BookDetails;
