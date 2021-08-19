@@ -8,9 +8,11 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   has_many :books
+
   def book_titles
     object.books.map do |book|
       book.title.split(',') 
     end 
   end
+  
 end
