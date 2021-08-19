@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
-  
+  resources :users, only: [:index, :create, :show]
+  resources :books, only: [:index, :show]
+  resources :shelves, only: [:index, :create]
+  resources :reviews, only: [:index, :create]
+  resources :login, only: [:create]
+  resources :ratings, only: [:index, :create]
+  delete "/logout", to: "login#destroy"
+  delete "/shelves/:id", to: "shelves#destroy"
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
   get "*path", to: "fallback#index", constraints: ->(req) { !req.xhr? && req.format.html? }
