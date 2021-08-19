@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -12,6 +12,12 @@ import BookDetails from "./components/BookDetails";
 import MyShelf from "./components/MyShelf";
 
 function App() {
+
+  //state so each book can be mapped over and contain its own info
+  const [books, setBooks] = useState([]);
+  const [search, setSearch] = useState("");
+
+  // set state for logged in user
   const [currentUser, setCurrentUser] = useState({});
 
   function storeUser(user) {
@@ -29,6 +35,22 @@ function App() {
     }
     logout();
   }
+
+   // fetch request to recieve book data from backend and set it to our state
+   useEffect(() => {
+    async function fetchBooks() {
+      const res = await fetch("/books");
+      if (res.ok) {
+        const bookData = await res.json();
+        setBooks(bookData);
+      }
+    }
+    fetchBooks();
+  }, []);
+
+  const displayedBooks = books.filter((book) =>
+    book.title.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
     <Router>
@@ -55,7 +77,7 @@ function App() {
                 <BookDetails currentUser={currentUser} />
               </Route>
               <Route path="/" exact>
-                <BookCollection currentUser={currentUser} />
+                <BookCollection currentUser={currentUser} books={displayedBooks} onSearch = {setSearch}/>
               </Route>
               <Route path="/myshelf">
                 <MyShelf currentUser={currentUser} />
