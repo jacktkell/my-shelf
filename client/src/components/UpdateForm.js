@@ -7,14 +7,14 @@ function UpdateForm({ currentUser }) {
   const [newBio, setNewBio] = useState("");
   const history = useHistory();
 
-  function handleSubmit(e) {
+  function handleSubmit({e}) {
     e.preventDefault();
     const profileData = {
       name: newName,
       fav_genre: newFavGenre,
       bio: newBio,
     };
-    async function updateProfile() {
+    async function updateProfile({currentUser}) {
       const res = await fetch(`/users/${currentUser.id}`, {
         method: "PATCH",
         headers: {
@@ -24,6 +24,8 @@ function UpdateForm({ currentUser }) {
       });
       if (res.ok) {
         const profile = await res.json();
+        console.log(profile);
+        alert("Profile updated successfully");
         history.push("/myprofile");
       }
     }

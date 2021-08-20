@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react'
-import UpdateForm from './UpdateForm'
 
 function MyProfile({currentUser}) {
     const [profile, setProfile] = useState([])

@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
     #update a user's profile
     def update 
-        @current_user.update(update_params)
+        @current_user.update(user_params)
         render json: user
     end
 
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 
     private
 
-    #parameters a user will need to sign up
+    #parameters a user will need to sign up and update profile
     def user_params
         params.require(:user).permit(:name, :password, :fav_genre, :bio)
     end

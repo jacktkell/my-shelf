@@ -23,6 +23,9 @@ function BookDetails({ currentUser }) {
       });
   }, [id]);
 
+  //DECONSTRUCT BOOK INFO FOR EASE OF USE
+  const { title, author, genre, length, pub_date, image, book_ratings, shelf, shelves } = book;
+
   //ADDS A BOOK TO A USER'S SHELF
   async function addBook() {
     const bookData = {
@@ -86,9 +89,6 @@ function BookDetails({ currentUser }) {
     setRating(rate);
   }
 
-  //DECONSTRUCT BOOK INFO FOR EASE OF USE
-  const { title, author, genre, length, pub_date, image, book_ratings, shelf, shelves } = book;
-
   // GET TOTAL FOR THE AVERAGE RATING OF A BOOK
   const total = (accumulator, currentValue) => accumulator + currentValue;
 
@@ -123,9 +123,9 @@ function BookDetails({ currentUser }) {
         <ul>
           {review ? review.map((r) => <li key ={r.id}><i>{r}</i></li>): null}
         </ul>
+        <button onClick={addBook}>Add to my shelf</button>
+        <button onClick={removeBook}>Remove from my shelf</button>
       </div>
-      <button onClick={addBook}>Add to my shelf</button>
-      <button onClick={removeBook}>Remove from my shelf</button>
 
       {/* FORM TO ADD A NEW REVIEW */}
       <div>
