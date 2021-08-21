@@ -37,7 +37,7 @@ function SignupForm({ onLogin, currentUser }) {
 
   //form for users to fill out to create an account
   return (
-    <div>
+    <div class="form">
       <form onSubmit={handleSubmit}>
         <h1>Sign up</h1>
         <input
@@ -47,6 +47,7 @@ function SignupForm({ onLogin, currentUser }) {
           name="name"
           onChange={(e) => setName(e.target.value)}
         ></input>
+        <br />
         <input
           type="password"
           placeholder="Password"
@@ -54,6 +55,7 @@ function SignupForm({ onLogin, currentUser }) {
           name="password"
           onChange={(e) => setPassword(e.target.value)}
         ></input>
+        <br />
         <input
           type="text"
           placeholder="Biography"
@@ -61,6 +63,7 @@ function SignupForm({ onLogin, currentUser }) {
           name="bio"
           onChange={(e) => setBio(e.target.value)}
         ></input>
+        <br />
         <select
           name="FavGenre"
           id="FavGenre"
@@ -75,6 +78,7 @@ function SignupForm({ onLogin, currentUser }) {
           <option value="Adventure">Adventure</option>
           <option value="Science Fiction">Science Fiction</option>
         </select>
+        <br />
         <input type="submit" value="Submit"></input>
         {errors ? errors.map((error) => <div>{error}</div>) : null}
       </form>

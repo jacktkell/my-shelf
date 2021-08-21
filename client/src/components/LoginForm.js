@@ -37,7 +37,7 @@ function LoginForm({ onLogin, currentUser }) {
 
   //form for users to fill out to create an account
   return (
-    <div>
+    <div class="form">
       <form onSubmit={handleSubmit}>
         <h1>Log In</h1>
         <input
@@ -47,6 +47,7 @@ function LoginForm({ onLogin, currentUser }) {
           name="name"
           onChange={(e) => setName(e.target.value)}
         ></input>
+        <br />
         <input
           type="password"
           placeholder="Password"
@@ -54,6 +55,7 @@ function LoginForm({ onLogin, currentUser }) {
           name="password"
           onChange={(e) => setPassword(e.target.value)}
         ></input>
+        <br />
         <input type="submit" value="Submit"></input>
         {errors ? errors.map((error) => <div>{error}</div>) : null}
       </form>
