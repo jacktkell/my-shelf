@@ -13,7 +13,6 @@ function BookDetails({ currentUser }) {
   const id = useParams().id;
   let history = useHistory();
 
-  
   //FETCH A SINGLE BOOK FROM BACKEND
   useEffect(() => {
     fetch(`http://localhost:3000/books/${id}`)
@@ -22,12 +21,12 @@ function BookDetails({ currentUser }) {
         setBook(book);
         setReview(book.book_reviews);
         setRating(book.book_ratings);
-        setHasShelf(book.shelves)
+        setHasShelf(book.shelves);
       });
   }, [id]);
 
   //DECONSTRUCT BOOK INFO FOR EASE OF USE
-  const {title, author, genre, length, pub_date, image, shelf, shelves} =
+  const { title, author, genre, length, pub_date, image, shelf, shelves } =
     book;
 
   //ADDS A BOOK TO A USER'S SHELF
@@ -134,7 +133,11 @@ function BookDetails({ currentUser }) {
             : "This book hasn't been reviewed yet"}
         </ul>
         <div>
-        {hasShelf.length > 0 ? <button onClick={removeBook}>Remove from my shelf</button> : <button onClick={addBook}>Add to my shelf</button>}
+          {hasShelf.length > 0 ? (
+            <button onClick={removeBook}>Remove from my shelf</button>
+          ) : (
+            <button onClick={addBook}>Add to my shelf</button>
+          )}
         </div>
       </div>
 

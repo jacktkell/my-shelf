@@ -1,31 +1,29 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-function UpdateForm({currentUser}) {
+function UpdateForm({ currentUser, setProfile }) {
   const [newName, setNewName] = useState("");
   const [newFavGenre, setNewFavGenre] = useState("");
   const [newBio, setNewBio] = useState("");
   const history = useHistory();
 
-  async function handleSubmit() {
+  async function handleSubmit(e) {
+    e.preventDefault();
     const profileData = {
       name: newName,
       fav_genre: newFavGenre,
       bio: newBio,
     };
-      const res = await fetch(`/users/${currentUser.id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ profileData }),
-      });
-      if (res.ok) {
-        const profile = await res.json();
-        alert("Profile updated successfully");
-        history.push("/myprofile");
-      }
-    }
+    const res = await fetch(`/users/${currentUser.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(profileData),
+    })
+      .then((res) => res.json())
+      .then((json) => setProfile(json));
+  }
 
   return (
     <div>
@@ -35,19 +33,19 @@ function UpdateForm({currentUser}) {
           type="text"
           placeholder="Name"
           value={newName}
-          name="name"
+          name="newName"
           onChange={(e) => setNewName(e.target.value)}
         ></input>
         <input
           type="text"
           placeholder="Bio"
           value={newBio}
-          name="name"
+          name="newBio"
           onChange={(e) => setNewBio(e.target.value)}
         ></input>
         <select
-          name="FavGenre"
-          id="FavGenre"
+          name="newFavGenre"
+          id="newFavGenre"
           onChange={(e) => setNewFavGenre(e.target.value)}
         >
           <option value="fantasy">fantasy</option>

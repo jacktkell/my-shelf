@@ -10,7 +10,7 @@ function SignupForm({ onLogin, currentUser }) {
 
   const history = useHistory();
 
-//handles input from user and posts to backend
+  //handles input from user and posts to backend
   async function handleSubmit(e) {
     e.preventDefault();
     const user = {

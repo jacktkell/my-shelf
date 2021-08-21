@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     #update a user's profile
     def update 
         @current_user.update(user_params)
-        render json: user
+        render json: @current_user
     end
 
     #return signed in user

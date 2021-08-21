@@ -2,7 +2,7 @@ import React from "react";
 import "./styles.css";
 
 function BookCard({ book }) {
-const details = `/books/${book.id}`
+  const details = `/books/${book.id}`;
 
   // displays information for each book in the BookCollection component
   return (
@@ -13,7 +13,7 @@ const details = `/books/${book.id}`
             {book.title} by {book.author}
           </h3>
           <img src={book.image} alt={book.title} className="photo" />
-          <a href = {details}>See more details</a>
+          <a href={details}>See more details</a>
         </li>
       </ul>
     </div>

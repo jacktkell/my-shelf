@@ -8,14 +8,14 @@ function LoginForm({ onLogin, currentUser }) {
 
   const history = useHistory();
 
-//handles input from user and posts to backend
+  //handles input from user and posts to backend
   function handleSubmit(e) {
     e.preventDefault();
     const user = {
       name,
-      password
+      password,
     };
-    async function login(){
+    async function login() {
       const res = await fetch("/login", {
         method: "POST",
         headers: {
@@ -24,15 +24,15 @@ function LoginForm({ onLogin, currentUser }) {
         body: JSON.stringify({ user }),
       });
       if (res.ok) {
-        const userData = await res.json()
+        const userData = await res.json();
         onLogin(userData);
         history.push("/");
       } else {
-        const err = await res.json()
+        const err = await res.json();
         setErrors(err.errors);
       }
     }
-    login()
+    login();
   }
 
   //form for users to fill out to create an account

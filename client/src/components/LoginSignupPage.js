@@ -1,20 +1,18 @@
-import React, {useState} from 'react'
-import LoginForm from './LoginForm'
-import SignupForm from './SignupForm'
+import React, { useState } from "react";
+import LoginForm from "./LoginForm";
+import SignupForm from "./SignupForm";
 
-function LoginSignupPage({onLogin}) {
-    const [showLogin, setShowLogin] = useState(true)
+function LoginSignupPage({ onLogin }) {
+  const [showLogin, setShowLogin] = useState(true);
 
-    return (
-        <div>
+  return (
+    <div>
       {showLogin ? (
         <>
           <LoginForm onLogin={onLogin} />
           <p>
             Don't have an account? &nbsp;
-            <button onClick={() => setShowLogin(false)}>
-              Sign Up
-            </button>
+            <button onClick={() => setShowLogin(false)}>Sign Up</button>
           </p>
         </>
       ) : (
@@ -22,9 +20,7 @@ function LoginSignupPage({onLogin}) {
           <SignupForm onLogin={onLogin} />
           <p>
             Already have an account? &nbsp;
-            <button onClick={() => setShowLogin(true)}>
-              Log In
-            </button>
+            <button onClick={() => setShowLogin(true)}>Log In</button>
           </p>
         </>
       )}
@@ -32,4 +28,4 @@ function LoginSignupPage({onLogin}) {
   );
 }
 
-export default LoginSignupPage
+export default LoginSignupPage;

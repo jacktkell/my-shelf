@@ -1,12 +1,12 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
-function Filter({onFilter}) {
-    const [filter, setFilter] = useState("")
+function Filter({ onFilter }) {
+  const [filter, setFilter] = useState("");
 
-    function filterBooks(e) {
-        e.preventDefault()
-        onFilter(filter)
-    }
+  function filterBooks(e) {
+    e.preventDefault();
+    onFilter(filter);
+  }
 
   return (
     <div>

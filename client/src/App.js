@@ -37,8 +37,8 @@ function App() {
     logout();
   }
 
-   // fetch request to recieve book data from backend and set it to our state
-   useEffect(() => {
+  // fetch request to recieve book data from backend and set it to our state
+  useEffect(() => {
     async function fetchBooks() {
       const res = await fetch("/books");
       if (res.ok) {
@@ -55,8 +55,9 @@ function App() {
   );
 
   // filter books by genre
-  const filteredBooks = books.filter((book) => 
-    book.genre.toLowerCase().includes(filter.toLowerCase()))
+  const filteredBooks = books.filter((book) =>
+    book.genre.toLowerCase().includes(filter.toLowerCase())
+  );
 
   return (
     <Router>
@@ -86,7 +87,13 @@ function App() {
                 <BookDetails currentUser={currentUser} />
               </Route>
               <Route path="/" exact>
-                <BookCollection currentUser={currentUser} searchedBooks={displayedBooks} filteredBooks= {filteredBooks} onSearch = {setSearch} onFilter = {setFilter} />
+                <BookCollection
+                  currentUser={currentUser}
+                  searchedBooks={displayedBooks}
+                  filteredBooks={filteredBooks}
+                  onSearch={setSearch}
+                  onFilter={setFilter}
+                />
               </Route>
               <Route path="/myshelf">
                 <MyShelf currentUser={currentUser} />
@@ -94,16 +101,13 @@ function App() {
               <Route path="/myprofile">
                 <MyProfile currentUser={currentUser} />
               </Route>
-              <Route path = "/update">
-                <UpdateForm currentUser={currentUser}/>
+              <Route path="/update">
+                <UpdateForm currentUser={currentUser} />
               </Route>
             </>
           ) : (
             <Route exact path="/">
-                <LoginSignupPage
-                  onLogin={storeUser}
-                  currentUser={currentUser}
-                />
+              <LoginSignupPage onLogin={storeUser} currentUser={currentUser} />
             </Route>
           )}
           <Redirect to="/" />
