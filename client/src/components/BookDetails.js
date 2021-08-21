@@ -24,7 +24,8 @@ function BookDetails({ currentUser }) {
   }, [id]);
 
   //DECONSTRUCT BOOK INFO FOR EASE OF USE
-  const { title, author, genre, length, pub_date, image, shelf, shelves } = book;
+  const { title, author, genre, length, pub_date, image, shelf, shelves } =
+    book;
 
   //ADDS A BOOK TO A USER'S SHELF
   async function addBook() {
@@ -77,7 +78,7 @@ function BookDetails({ currentUser }) {
   // POST RATING
   async function addRating(e) {
     // e.preventDefault();
-    const ratingData = {book_id: book.id, rating: newRating };
+    const ratingData = { book_id: book.id, rating: newRating };
     const res = await fetch(`/ratings`, {
       method: "POST",
       headers: {
@@ -111,17 +112,23 @@ function BookDetails({ currentUser }) {
           <b>Published: </b>
           {pub_date}
         </li>
-        {rating.length > 0 ? (
-          <li>
-            <b>Average rating: </b>
-            {(rating.reduce(total) / rating.length).toFixed(2)}
-          </li>
-        ) : null}
+        <li>
+          <b>Average rating: </b>
+          {rating.length > 0
+            ? (rating.reduce(total) / rating.length).toFixed(2)
+            : "This book hasn't been rated yet"}
+        </li>
       </ul>
       <div>
         <b>Reviews about {title}: </b>
         <ul>
-          {review ? review.map((r) => <li key ={r.id}><i>{r}</i></li>): null}
+          {review.length > 0
+            ? review.map((r) => (
+                <li key={r.id}>
+                  <i>{r}</i>
+                </li>
+              ))
+            : "This book hasn't been reviewed yet"}
         </ul>
         <button onClick={addBook}>Add to my shelf</button>
         <button onClick={removeBook}>Remove from my shelf</button>
@@ -136,8 +143,8 @@ function BookDetails({ currentUser }) {
             placeholder="Leave a review..."
             name="newReveiw"
             value={newReview}
-            onChange={(e) => setNewReview(e.target.value)}>
-          </textarea>
+            onChange={(e) => setNewReview(e.target.value)}
+          ></textarea>
           <input type="submit" value="Submit" />
         </form>
       </div>
