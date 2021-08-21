@@ -1,20 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-function UpdateForm({ currentUser }) {
+function UpdateForm({currentUser}) {
   const [newName, setNewName] = useState("");
   const [newFavGenre, setNewFavGenre] = useState("");
   const [newBio, setNewBio] = useState("");
   const history = useHistory();
 
-  function handleSubmit({e}) {
-    e.preventDefault();
+  async function handleSubmit() {
     const profileData = {
       name: newName,
       fav_genre: newFavGenre,
       bio: newBio,
     };
-    async function updateProfile({currentUser}) {
       const res = await fetch(`/users/${currentUser.id}`, {
         method: "PATCH",
         headers: {
@@ -24,13 +22,10 @@ function UpdateForm({ currentUser }) {
       });
       if (res.ok) {
         const profile = await res.json();
-        console.log(profile);
         alert("Profile updated successfully");
         history.push("/myprofile");
       }
     }
-    updateProfile();
-  }
 
   return (
     <div>

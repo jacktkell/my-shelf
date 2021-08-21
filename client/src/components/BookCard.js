@@ -13,9 +13,6 @@ const details = `/books/${book.id}`
             {book.title} by {book.author}
           </h3>
           <img src={book.image} alt={book.title} className="photo" />
-          {/* <form action={details}>
-            <input type="submit" value="See more details" />
-          </form> */}
           <a href = {details}>See more details</a>
         </li>
       </ul>

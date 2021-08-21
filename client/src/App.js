@@ -86,7 +86,7 @@ function App() {
                 <BookDetails currentUser={currentUser} />
               </Route>
               <Route path="/" exact>
-                <BookCollection currentUser={currentUser} books={displayedBooks} books= {filteredBooks} onSearch = {setSearch} onFilter = {setFilter} />
+                <BookCollection currentUser={currentUser} searchedBooks={displayedBooks} filteredBooks= {filteredBooks} onSearch = {setSearch} onFilter = {setFilter} />
               </Route>
               <Route path="/myshelf">
                 <MyShelf currentUser={currentUser} />

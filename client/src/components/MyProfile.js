@@ -21,7 +21,6 @@ function MyProfile({currentUser}) {
     return (
         <div>
             <h1>{name}'s Profile</h1>
-            <h2> favorite book rendered here</h2>
             <h2> Favorite genre: {fav_genre}</h2>
             <h2>Books on your shelf: {bookCount}</h2>
             <h2>About {name}: </h2>

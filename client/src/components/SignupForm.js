@@ -28,7 +28,6 @@ function SignupForm({ onLogin, currentUser }) {
     });
     const userData = await res.json();
     if (res.ok) {
-      console.log(userData);
       onLogin(userData);
       history.push("/");
     } else {

@@ -24,7 +24,7 @@ function BookDetails({ currentUser }) {
   }, [id]);
 
   //DECONSTRUCT BOOK INFO FOR EASE OF USE
-  const { title, author, genre, length, pub_date, image, book_ratings, shelf, shelves } = book;
+  const { title, author, genre, length, pub_date, image, shelf, shelves } = book;
 
   //ADDS A BOOK TO A USER'S SHELF
   async function addBook() {
@@ -125,6 +125,7 @@ function BookDetails({ currentUser }) {
         </ul>
         <button onClick={addBook}>Add to my shelf</button>
         <button onClick={removeBook}>Remove from my shelf</button>
+        {/* {onShelf()} */}
       </div>
 
       {/* FORM TO ADD A NEW REVIEW */}

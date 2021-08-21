@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import BookCard from "./BookCard";
 import Searchbar from "./Searchbar"
 import Filter from "./Filter"
 
-function BookCollection({currentUser, books, onSearch, onFilter}) {
+function BookCollection({currentUser, filteredBooks, onSearch, onFilter}) {
   
   //displays each book in it's own card as a "recommended" section
   return (
@@ -11,7 +11,7 @@ function BookCollection({currentUser, books, onSearch, onFilter}) {
       {/* <Searchbar onSearch={onSearch}/> */}
       <Filter onFilter={onFilter}/>
       <h1>You might like:</h1>
-      {books.map((book) => (
+      {filteredBooks.map((book) => (
         <BookCard book={book} key={book.id}/>
       ))}
     </div>

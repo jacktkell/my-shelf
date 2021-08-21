@@ -1,5 +1,5 @@
 class BookSerializer < ActiveModel::Serializer
-  attributes :id, :title, :author, :genre, :length, :pub_date, :image, :book_reviews, :book_ratings, :shelf
+  attributes :id, :title, :author, :genre, :length, :pub_date, :image, :book_reviews, :book_ratings, :shelf, :shelves
 
   def book_reviews 
     object.reviews.map do |review|

@@ -17,15 +17,15 @@ function Filter({onFilter}) {
           id="filter"
           onChange={(e) => setFilter(e.target.value)}
         >
-          <option value="">all</option>
-          <option value="fantasy">fantasy</option>
-          <option value="horror">horror</option>
-          <option value="romance">romance</option>
-          <option value="poetry">poetry</option>
-          <option value="manga">manga</option>
-          <option value="western">western</option>
-          <option value="adventure">adventure</option>
-          <option value="science fiction">science fiction</option>
+          <option value="">All</option>
+          <option value="Fantasy">Fantasy</option>
+          <option value="Horror">Horror</option>
+          <option value="Romance">Romance</option>
+          <option value="Poetry">Poetry</option>
+          <option value="Manga">Manga</option>
+          <option value="Western">Western</option>
+          <option value="Adventure">Adventure</option>
+          <option value="Science Fiction">Science Fiction</option>
         </select>
         <input type="submit" value="submit" />
       </form>
