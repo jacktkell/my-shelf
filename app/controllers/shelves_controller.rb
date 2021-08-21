@@ -1,7 +1,15 @@
 class ShelvesController < ApplicationController
+
+    skip_before_action :authorize, only: :show
+    
     # just to verify data
     def index
         render json: Shelf.all
+    end
+
+    def show 
+        shelf = Shelf.find(params[:id])
+        render json: shelf
     end
 
     #add book to user's shelf

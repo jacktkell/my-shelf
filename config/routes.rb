@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :users, only: [:index, :create, :show, :update]
   resources :books, only: [:index, :show]
-  resources :shelves, only: [:index, :create, :destroy]
+  resources :shelves, only: [:index, :show, :create, :destroy]
   resources :reviews, only: [:index, :create]
   resources :login, only: [:create]
   resources :ratings, only: [:index, :create]
