@@ -56,18 +56,25 @@ function SignupForm({ onLogin, currentUser }) {
         ></input>
         <input
           type="text"
-          placeholder="Favorite Genre"
-          value={fav_genre}
-          name="fav_genre"
-          onChange={(e) => setFav_Genre(e.target.value)}
-        ></input>
-        <input
-          type="text"
           placeholder="Biography"
           value={bio}
           name="bio"
           onChange={(e) => setBio(e.target.value)}
         ></input>
+        <select
+          name="FavGenre"
+          id="FavGenre"
+          onChange={(e) => setFav_Genre(e.target.value)}
+        >
+          <option value="Fantasy">Fantasy</option>
+          <option value="Horror">Horror</option>
+          <option value="Romance">Romance</option>
+          <option value="Poetry">Poetry</option>
+          <option value="Manga">Manga</option>
+          <option value="Western">Western</option>
+          <option value="Adventure">Adventure</option>
+          <option value="Science Fiction">Science Fiction</option>
+        </select>
         <input type="submit" value="Submit"></input>
         {errors ? errors.map((error) => <div>{error}</div>) : null}
       </form>
