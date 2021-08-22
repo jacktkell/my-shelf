@@ -11,7 +11,6 @@ function LoginSignupPage({ onLogin }) {
         <>
           <LoginForm onLogin={onLogin} />
           <div class="form">
-            {" "}
             <p>
               Don't have an account? &nbsp;
               <button onClick={() => setShowLogin(false)}>Sign Up</button>

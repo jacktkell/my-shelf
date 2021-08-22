@@ -56,13 +56,13 @@ function SignupForm({ onLogin, currentUser }) {
           onChange={(e) => setPassword(e.target.value)}
         ></input>
         <br />
-        <input
+        <textarea
           type="text"
           placeholder="Biography"
           value={bio}
           name="bio"
           onChange={(e) => setBio(e.target.value)}
-        ></input>
+        ></textarea>
         <br />
         <select
           name="FavGenre"
