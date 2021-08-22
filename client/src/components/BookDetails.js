@@ -97,86 +97,86 @@ function BookDetails({ currentUser }) {
 
   // DISPLAY BOOK INFORMATION
   return (
-    <div>
+    <div className="bookcard">
       <ul>
         <h3>
           {title} by {author}
         </h3>
         <img src={image} alt={title} className="photo" />
-        <li>
+        <ul>
           <b>Genre: </b>
           {genre}
-        </li>
-        <li>
+        </ul>
+        <ul>
           <b>Page count: </b> {length}
-        </li>
-        <li>
+        </ul>
+        <ul>
           <b>Published: </b>
           {pub_date}
-        </li>
-        <li>
+        </ul>
+        <ul>
           <b>Average rating: </b>
           {rating.length > 0
             ? (rating.reduce(total) / rating.length).toFixed(2)
             : "This book hasn't been rated yet"}
-        </li>
+        </ul>
       </ul>
       <div>
         <b>Reviews about {title}: </b>
         <ul>
           {review.length > 0
             ? review.map((r) => (
-                <li key={r.id}>
+                <p key={r.id}>
                   <i>{r}</i>
-                </li>
+                </p>
               ))
             : "This book hasn't been reviewed yet"}
         </ul>
-        <div>
+        <div className="bookcard">
           {hasShelf.length > 0 ? (
             <button onClick={removeBook}>Remove from my shelf</button>
           ) : (
             <button onClick={addBook}>Add to my shelf</button>
           )}
         </div>
-      </div>
 
-      {/* FORM TO ADD A NEW REVIEW */}
-      <div>
-        <form onSubmit={addReview}>
-          <textarea
-            type="text"
-            placeholder="Leave a review..."
-            name="newReveiw"
-            value={newReview}
-            onChange={(e) => setNewReview(e.target.value)}
-          ></textarea>
-          <input type="submit" value="Submit" />
-        </form>
-      </div>
+        {/* FORM TO ADD A RATING */}
+        <div>
+          <form onSubmit={addRating}>
+            <label htmlFor="newRating"> Leave a rating: </label>
+            <select
+              name="newRating"
+              id="newRating"
+              onChange={(e) => setNewRating(e.target.value)}
+            >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select> &nbsp;
+            <input type="submit" value="Rate" />
+          </form>
+        </div>
 
-      {/* FORM TO ADD A RATING */}
-      <div>
-        <form onSubmit={addRating}>
-          <label htmlFor="newRating"> Leave a rating: </label>
-          <select
-            name="newRating"
-            id="newRating"
-            onChange={(e) => setNewRating(e.target.value)}
-          >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-          </select>
-          <input type="submit" value="submit" />
-        </form>
+        {/* FORM TO ADD A NEW REVIEW */}
+        <div>
+          <form onSubmit={addReview}>
+            <textarea
+              type="text"
+              placeholder="Leave a review..."
+              name="newReveiw"
+              value={newReview}
+              onChange={(e) => setNewReview(e.target.value)}
+            ></textarea> &nbsp;
+            <input type="submit" value="Review" />
+          </form>
+        </div>
       </div>
     </div>
   );

@@ -61,23 +61,15 @@ function App() {
 
   return (
     <Router>
-      <div>
+      <div className="darken">
         {localStorage.getItem("user") && (
-          <nav>
-            <ul>
-              <li>
-                <Link to="/">Home</Link>
-              </li>
-              <li>
-                <Link to="/myshelf">My Shelf</Link>
-              </li>
-              <li>
-                <Link to="/myprofile">My Profile</Link>
-              </li>
-              <li>
-                <button onClick={handleLogout}>Log out</button>
-              </li>
-            </ul>
+          <nav className="topnav">
+            <a className="active" href="/">
+              Home
+            </a>
+            <a href="/myshelf">My Shelf</a>
+            <a href="/myprofile">My Profile</a>
+            <button onClick={handleLogout}>Log out</button>
           </nav>
         )}
         <Switch>

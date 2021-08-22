@@ -20,7 +20,7 @@ function MyProfile({ currentUser }) {
   const { name, fav_genre, bio } = profile;
 
   return (
-    <div>
+    <div className="bookcard">
       <h1>{name}'s Profile</h1>
       <h2> Favorite genre: {fav_genre}</h2>
       <h2>Books on your shelf: {bookCount}</h2>

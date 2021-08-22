@@ -6,7 +6,7 @@ import Filter from "./Filter";
 function BookCollection({ currentUser, filteredBooks, onSearch, onFilter }) {
   //displays each book in it's own card as a "recommended" section
   return (
-    <div>
+    <div className="bookcard">
       {/* <Searchbar onSearch={onSearch}/> */}
       <Filter onFilter={onFilter} />
       <h1>You might like:</h1>

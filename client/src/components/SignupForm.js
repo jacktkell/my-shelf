@@ -37,7 +37,7 @@ function SignupForm({ onLogin, currentUser }) {
 
   //form for users to fill out to create an account
   return (
-    <div class="form">
+    <div className="form">
       <form onSubmit={handleSubmit}>
         <h1>Sign up</h1>
         <input

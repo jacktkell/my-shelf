@@ -7,15 +7,14 @@ function BookCard({ book }) {
   // displays information for each book in the BookCollection component
   return (
     <div>
-      <ul>
-        <li>
+        <ul className="bookcard">
           <h3>
-            {book.title} by {book.author}
+            {book.title}
           </h3>
           <img src={book.image} alt={book.title} className="photo" />
-          <a href={details}>See more details</a>
-        </li>
-      </ul>
+          <h3>by {book.author}</h3>
+          <a href={details}>Details about {book.title}</a>
+        </ul>
     </div>
   );
 }

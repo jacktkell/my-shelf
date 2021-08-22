@@ -36,6 +36,7 @@ function UpdateForm({ currentUser, setProfile }) {
           name="newName"
           onChange={(e) => setNewName(e.target.value)}
         ></input>
+        <br/>
         <input
           type="text"
           placeholder="Bio"
@@ -43,6 +44,7 @@ function UpdateForm({ currentUser, setProfile }) {
           name="newBio"
           onChange={(e) => setNewBio(e.target.value)}
         ></input>
+        <br/>
         <select
           name="newFavGenre"
           id="newFavGenre"
@@ -57,6 +59,7 @@ function UpdateForm({ currentUser, setProfile }) {
           <option value="Adventure">Adventure</option>
           <option value="Science Fiction">Science Fiction</option>
         </select>
+        <br/>
         <input type="submit" value="submit" />
       </form>
     </div>

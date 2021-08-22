@@ -10,7 +10,7 @@ function LoginSignupPage({ onLogin }) {
       {showLogin ? (
         <>
           <LoginForm onLogin={onLogin} />
-          <div class="form">
+          <div className="form">
             <p>
               Don't have an account? &nbsp;
               <button onClick={() => setShowLogin(false)}>Sign Up</button>
@@ -20,7 +20,7 @@ function LoginSignupPage({ onLogin }) {
       ) : (
         <>
           <SignupForm onLogin={onLogin} />
-          <div class="form">
+          <div className="form">
             <p>
               Already have an account? &nbsp;
               <button onClick={() => setShowLogin(true)}>Log In</button>
