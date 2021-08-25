@@ -61,7 +61,7 @@ function App() {
 
   return (
     <Router>
-      <div className="darken">
+      <div>
         {localStorage.getItem("user") && (
           <nav className="topnav">
             <a className="active" href="/">

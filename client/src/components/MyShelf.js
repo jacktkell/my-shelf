@@ -16,7 +16,7 @@ function MyShelf({ currentUser }) {
   }, []);
 
   return (
-    <div>
+    <div className="bookcard">
       {books.length > 0 ? (
         books.map((book) => <BookCard book={book} key={book.id} />)
       ) : (
