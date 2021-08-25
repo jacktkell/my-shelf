@@ -6,11 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 puts "Creating users..."
-User.create(name: 'Jack', password: 'book', fav_genre: 'fantasy', bio: 'A bibliophile who owns at least 7 copies of The Lord of the Rings')
-User.create(name: 'Emily', password: 'book', fav_genre: 'horror', bio: "Nursing student who doesn't even have the time to read")
-User.create(name: 'Melissa', password: 'book', fav_genre: 'adventure', bio: 'Manga all the way')
-User.create(name: 'James', password: 'book', fav_genre: 'western', bio: 'Rootin tootin cowboys yeehaw!')
-User.create(name: 'Brandi', password: 'book', fav_genre: 'romance', bio: 'I need more bookshelves')
+User.create(name: 'Jack', password: 'book', fav_genre: 'Fantasy', bio: 'A bibliophile who owns at least 7 copies of The Lord of the Rings')
+User.create(name: 'Emily', password: 'book', fav_genre: 'Horror', bio: "Nursing student who doesn't even have the time to read")
+User.create(name: 'Melissa', password: 'book', fav_genre: 'Adventure', bio: 'Manga all the way')
+User.create(name: 'James', password: 'book', fav_genre: 'Western', bio: 'Rootin tootin cowboys yeehaw!')
+User.create(name: 'Brandi', password: 'book', fav_genre: 'Romance', bio: 'I need more bookshelves')
 
 
 puts "Creating books..."

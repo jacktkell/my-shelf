@@ -15,6 +15,7 @@ import UpdateForm from "./components/UpdateForm";
 
 function App() {
   const [books, setBooks] = useState([]);
+  const [myBooks, setMyBooks] = useState([]);
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("");
   const [currentUser, setCurrentUser] = useState({});
@@ -49,14 +50,25 @@ function App() {
     fetchBooks();
   }, []);
 
-  //search for a book
-  const displayedBooks = books.filter((book) =>
-    book.title.toLowerCase().includes(search.toLowerCase())
-  );
-
   // filter books by genre
   const filteredBooks = books.filter((book) =>
     book.genre.toLowerCase().includes(filter.toLowerCase())
+  );
+
+  useEffect(() => {
+    async function getBooks() {
+      const res = await fetch(`/users/${currentUser.id}`);
+      if (res.ok) {
+        const user = await res.json();
+        setMyBooks(user.user_books);
+      }
+    }
+    getBooks();
+  }, []);
+
+  //search for a book
+  const displayedBooks = myBooks.filter((book) =>
+    book.title.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
@@ -81,14 +93,16 @@ function App() {
               <Route path="/" exact>
                 <BookCollection
                   currentUser={currentUser}
-                  searchedBooks={displayedBooks}
                   filteredBooks={filteredBooks}
-                  onSearch={setSearch}
                   onFilter={setFilter}
                 />
               </Route>
               <Route path="/myshelf">
-                <MyShelf currentUser={currentUser} />
+                <MyShelf
+                  currentUser={currentUser}
+                  onSearch={setSearch}
+                  searchedBooks={displayedBooks}
+                />
               </Route>
               <Route path="/myprofile">
                 <MyProfile currentUser={currentUser} />
