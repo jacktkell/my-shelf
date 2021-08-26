@@ -15,7 +15,6 @@ import UpdateForm from "./components/UpdateForm";
 
 function App() {
   const [books, setBooks] = useState([]);
-  const [myBooks, setMyBooks] = useState([]);
   const [search, setSearch] = useState("");
   const [filter, setFilter] = useState("");
   const [currentUser, setCurrentUser] = useState({});
@@ -55,21 +54,10 @@ function App() {
     book.genre.toLowerCase().includes(filter.toLowerCase())
   );
 
-  useEffect(() => {
-    async function getBooks() {
-      const res = await fetch(`/users/${currentUser.id}`);
-      if (res.ok) {
-        const user = await res.json();
-        setMyBooks(user.user_books);
-      }
-    }
-    getBooks();
-  }, []);
-
   //search for a book
-  const displayedBooks = myBooks.filter((book) =>
-    book.title.toLowerCase().includes(search.toLowerCase())
-  );
+  const searchedBooks = books.filter((book) =>
+  book.title.toLowerCase().includes(search.toLowerCase())
+  );  
 
   return (
     <Router>
@@ -95,13 +83,13 @@ function App() {
                   currentUser={currentUser}
                   filteredBooks={filteredBooks}
                   onFilter={setFilter}
+                  onSearch={setSearch}
+                  searchedBooks={searchedBooks}
                 />
               </Route>
               <Route path="/myshelf">
                 <MyShelf
                   currentUser={currentUser}
-                  onSearch={setSearch}
-                  searchedBooks={displayedBooks}
                 />
               </Route>
               <Route path="/myprofile">
